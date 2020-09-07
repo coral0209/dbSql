@@ -191,11 +191,10 @@ java 에서 + 는 결합 연산
     "Hello" - "World" : 연산자가 정의되어 있지 않다. 
     "Hello" * "World" : 연산자가 정의되어 있지 않다 
     
-    Python 
-      "Hello," * 3 ===> "Hello, Hello, Hello,"
+  
       sql ||, CONCAT 함수 ==> 결합연산
       EMP 테이블의 ename, job 컬럼이 문자열
-      
+      eh
       ename ' ' || job
       SELECT ename || ' ' || job 
       FROM emp; 
@@ -207,7 +206,9 @@ java 에서 + 는 결합 연산
         CONCAT (CONCAT(ename, ' '), job)  
         FROM emp; 
         
-    CONCAT(ename, job)
+        SELECT *
+        FROM emp;
+  ;
 
 USER_TABLES : 오라클에서 관리하는 테이블(뷰)
               접속한 사용자가 보유하고 있는 테이블 정보를 관리 
@@ -227,7 +228,7 @@ FROM user_tables;
 
 문자열 결합연산자, 
 
-                SELECT COLONE 명. 
+                SELECT COLUMN 명
                 
                 'SELECT' 는 문자열. 
 colone명 뒤에 별칭. 
@@ -334,13 +335,24 @@ SELECT userid, usernm, alias, reg_dg
 FROM users;
 WHERE userid = 'brown'; 
 
+
+SELECT userid
+FROM users;
+
+WHERE userid = 'brown';
+
+
+
 SQL은 대소문자를 가리지 않는다. : 키워드, 테이블명, 컬럼명 
 
 데이터는 대소문자를 가린다.
 
 SELECT userid, usernm, alias, reg_dg
 FROM users;
-WHERE userid = 'BROWN'; 
+
+WHERE 1 = 1; 
+
+
 ---> 대문자 브라운은 없음. 
 
 
@@ -348,8 +360,6 @@ WHERE userid = 'BROWN';
 
 WHERE 절에 기술된 조건을 참(TRUE)으로 만족하는 행둘만 조회가 된다.
 SELECT userid, usernm, alias, reg_dt
-
-From users  
 
 WHERE 1 = 1; 
 
@@ -387,7 +397,8 @@ yy/mm/dd -> 한국의 표기
 서양권 mm/ dd / yy 처럼 다 다르다. 
 환경설정에서 찾아보면 된다.
 
-날짜 리터럴 결론 : 문자열 형태로 표현하는 것이 가능하나 서버 설정마다 다르게 해석할 수 있기 때문에 서버 설정과 관계 없이 동일하게 해석할 수 있는 방법으로 사용 
+날짜 리터럴 결론 : 문자열 형태로 표현하는 것이 가능하나 서버 
+설정마다 다르게 해석할 수 있기 때문에 서버 설정과 관계 없이 동일하게 해석할 수 있는 방법으로 사용 
 TO_DATE('날짜문자열 ',' 날짜문자열형식')
 : 문자열 ==> 날짜 타입으로 변경 
 
@@ -485,6 +496,12 @@ FROM users
 WHERE userid IN ('brown', 'cony', 'sally');
 -> 작은 따옴표를 없이 하면 COLON으로 인식한다는 뜻. 근데 brown, cony , sally 는 데이타이긴하지만 colon에는 없음. 문자열임. 
 
+SELECT * 
+FROM users
+WHERE userid IN ('brown', 'cony', 'sally');
+
+
+
 where 
 
 SELECT userid 아이디, usernm 이름, alias 별명 
@@ -541,16 +558,22 @@ FROM member
 
 SELECT mem_id, mem_name
 FROM member
-WHERE mem_name LIKE '이%' 
-OR mem_name LIKE '%이%'; 
+WHERE mem_name LIKE '%이%'; 
 
 개이득
 
 SELECT mem_id, mem_name
 FROM member
+
 WHERE mem_name IN ( "이%", "%이") ;
 
 
 
+과제 -> YOUTUBE 에 가서 노마드 코더 7분짜리 동영상 보고 어떤 내용이었는지. 
 
+select *
+FROM dept;
+
+WHERE job = salesman 
+OR 
 
