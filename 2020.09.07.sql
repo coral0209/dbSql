@@ -6,10 +6,11 @@ WHERE job = 'SALESMAN'
 
 OR hiredate >= TO_DATE ( ' 1981/06/01' , 'YYYY/MM/DD ') ; 
 
-DESC 
+
+1
 
 
-
+ 
 SELECT * 
 
 FROM emp
@@ -19,6 +20,18 @@ WHERE job = 'SALESMAN'
 OR empno LIKE  '78%' ;
 
 
+14번
+SELECT *
+FROM emp 
+WHERE  job = 'SALESMAN' 
+OR (hiredate >= TO_DATE ('1981/06/01' , 'YYYY/MM/DD')  
+AND     empno LIKE '78%' )
+
+
+
+
+13
+DESC emp;
 SELECT * 
 FROM emp
 WHERE job =   'SALESMAN' 
@@ -27,18 +40,79 @@ OR empno BETWEEN 780 AND 789
 OR empno Between 7800 AND 7899); 
 
 
+
+
+
+
+
+
+
+order by 
+
+
+ORDER BY 실습 ( 내가 푸는것 )
+
+SELECT *
+FROM emp 
+WHERE comm IS NOT NULL AND comm != 0
+ORDER BY comm DESC , empno DESC
+
+
+
+
+
+
+
+SELECT empno, ename
+FROM emp
+
+
+
+
+
+
+
+
 ROWNUM : 1부터 읽어야 한다. 
           select 절이 ORDER BY 절보다 먼저 실행된다
           ==> ROWNUM
 
-가상칼럼 ROWNUM 실습 ROW1.   
+가상 ROW칼럼 ROWNUM 실습1.   
+          
+  SELECT ROWNUM rn, empno, ename
+
+FROM emp
+
+WHERE ROWNUM BETWEEN 1 AND 10 
+          
           
 SELECT ROWNUM rn, empno, ename
 
 FROM emp
 
 WHERE ROWNUM <= 10 ;      
-          
+   
+   
+
+
+
+
+
+
+SELECT a.*
+
+FROM 
+
+             (SELECT  ROWNUM rn, empno, ename
+
+             FROM  emp ) a
+
+WHERE rn BETWEEN 11 AND 14;
+
+
+
+
+
  
  가상칼럼 rownum 실습 row2 
  
@@ -64,18 +138,17 @@ WHERE rn BETWEEN 11 AND 14
 
 답: 
 
-SELECT *
+SELECT a.*
 FROM 
-       (SELECT ROWNUM rn, empno, rname 
-        FROM emp ) ; 
+       (SELECT ROWNUM rn, empno, ename 
+        FROM emp ) a
 WHERE rn >= 11 AND rn <=20;  
 
 ROWNUM 실습 ROW 3 
 
 
 나
-SELECT *
-FROM emp
+
 
 SELECT *
 FROM
@@ -85,6 +158,31 @@ FROM
         FROM emp
         ORDER BY ename ASC ))
 WHERE rn BETWEEN 11 AND 20;
+
+
+
+SELECT *
+
+FROM 
+
+(SELECT ROWNUM rn,  a.*
+
+        FROM
+
+                  (SELECT empno, ename 
+
+                    FROM emp
+
+                     ORDER BY ename ASC ) a )
+
+WHERE rn BETWEEN 11 AND 14 
+
+
+
+
+
+
+
 
 
 
@@ -240,7 +338,7 @@ SYSDATE : 오라클 서버의 현재 날짜, 시간을 돌려주는 특수함수
 LENGTH('Hello, World') 
 SYSDATE ; 
 
-SELECT SYSDATE
+SELECT SYSDATE , LENGTH('Hello, World') 
 FROM dual; 
 
 날짜 타입 +- 정수 : 일자를 더하고 뺀것. : 날짜에서 정수만큼 더한(뺀) 날짜 

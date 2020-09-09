@@ -12,8 +12,8 @@ SELECT
 
 TO_CHAR(날짜타입, '변경할 문자열 포맷' ) 
 현재 설정된 NLS DATE FORMET : YYYY/MM/DD HH24:MI:SS
-TO_DATE('날짜문자열 ', ; '첫번쨰 인자의 날짜 포맷')
-TO_CHARM, TO_DATE 첫번째 인자 값을 넣을때 문자열인지, 날짜인지 구분 . 
+TO_DATE('날짜문자열 ', '첫번쨰 인자의 날짜 포맷')
+TO_CHAR, TO_DATE 첫번째 인자 값을 넣을때 문자열인지, 날짜인지 구분 . 
 
 
 
@@ -209,6 +209,7 @@ FROM emp;
 1. NVL(COLUMN || EXPRESSION , COLUMN || EXPRESSION ) 
    NVL(exprl, expr2) -- 뜻 : exprl 이 null이면 expr2를 반환 아니면 exprl 을 반환 
    
+   자바에서
    if(exprl == null){
        System.out.println(expr2); 
    else 
