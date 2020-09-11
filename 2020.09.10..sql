@@ -247,6 +247,9 @@ FROM dept
 -> 테이블간의 column이 같아야되는 제약사항 
 조인 컬럼에 테이블 한정자를 붙이면 natural join 에서는 에러로 취급 
 
+SELECT empno, depno, dname
+FROM emp natural join dept;
+
 
 
 NATURAL join 을 oracle문법으로 
@@ -264,7 +267,8 @@ FROM emp
 
 
 
-컬럼이 여러개의 테이블에 동시에 존재하는 상황에서 테이블 한정자를 붙이지 않아서 오라클 입장에서는 해당 컬럼이 어떤 테이블의 컬럼인지 알수가 없을때 오류
+컬럼이 여러개의 테이블에 동시에 존재하는 상황에서 테이블 한정자를 붙이지 않아서 
+오라클 입장에서는 해당 컬럼이 어떤 테이블의 컬럼인지 알수가 없을때 오류
 : 
 
 SELECT * 
@@ -347,9 +351,8 @@ AND emp.deptno IN ( 20, 30 ) ;
 ---> king의 경우 메니저 컬럼의 값이 null이기 때문에 e.mgr = m.empno 조건을 충족시키지 못함
 그래서 조인 실패해서 14건중 13건의 데이터만 조회 
  
- 
- 
- 
+ SELECT * 
+ FROM dept
  
  2. nonequi join 조인 조건이 = 이 아닌 조인 
  
@@ -365,23 +368,23 @@ SAL를 ㅣㅇ용해서 등급 구하기
 
 
 empno, ename sal, 등급 
-SELECT empno, ename, sal, 등깁(grade )  
-FROM epm, salgrade
+SELECT empno, ename, sal, grade  
+FROM emp, salgrade
 WHERE emp.sal >= losal
 AND      sal <= hisal; 
 
 
 empno, ename sal, 등급 
-SELECT empno, ename, sal, 등급 ( grade )  
-FROM epm, salgrade
+SELECT empno, ename, sal, grade 
+FROM emp, salgrade
 WHERE sal between losal and hisal ; 
 
 
 
 위의 sql을 ansi - sql 로 변경 
 
-SELECT empno, ename, sal, grade ) 
-FROM epm JOIN salgrade ON ( sal >= losal and <= hisal ); 
+SELECT empno, ename, sal, grade 
+FROM emp JOIN salgrade ON ( sal >= losal and sal <= hisal ); 
 
 
 
