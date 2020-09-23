@@ -1,0 +1,9 @@
+GRANT CREATE SYNONYM TO AURORA ; 
+GRANT CREATE SYNONYM TO hr ; 
+
+
+SELECT * 
+FROM aurora.V_emp ;
+
+
+CREATE SYNONYM v_emp FOR sem.v_emp ; 
